@@ -11,7 +11,7 @@ class App(
 ):
     def __init__(self, root):
         self.root = root
-        self.root.title("Teste Target Sistemas")
+        self.root.title("Teste Técnico Target Sistemas")
         self.root.geometry("800x600")
         self.root.resizable(False, False)
         self.create_main_screen()

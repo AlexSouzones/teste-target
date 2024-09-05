@@ -12,12 +12,11 @@ from utils import (
 class MonthlyIncomeScreen:
 
     def load_file(self):
-        file_path = filedialog.askopenfilename()
+        file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
         if file_path:
             data = load_data(file_path)
             if data:
                 ref_info = state_values(data)
-                print(ref_info)
                 self.min_income_var.set(f"R$ {ref_info['min value']['valor']:.4f}")
                 self.max_income_var.set(f"R$ {ref_info['max value']['valor']:.4f}")
                 self.mid_income_var.set(f"R$ {ref_info['mid value']:.4f}")
@@ -83,7 +82,7 @@ class MonthlyIncomeScreen:
 
         self.info_files = tk.Label(
             self.root,
-            text="Os arquivos a serem enviados devem estar nos formatos JSON ou XML e seguir o padrão da atividade.",
+            text="Os arquivos a serem enviados devem estar nos formatos JSON e seguir o padrão da atividade.",
             **label_style_info,
         )
         self.info_files.pack(pady=5)

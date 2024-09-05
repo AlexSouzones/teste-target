@@ -1,5 +1,6 @@
 import json
 import webbrowser
+import xml.etree.ElementTree as ET
 
 button_style = {
     "width": 25,
@@ -98,8 +99,6 @@ def load_data(file_path: str) -> None | list[dict[str, int, float]]:
             if info:
                 return info
             return None
-    elif file_path.lower().endswith(".xml"):
-        ...
 
 
 def calculate_mid_value(info_values: list[dict[str, int, float]]) -> int | float:
