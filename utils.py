@@ -19,7 +19,7 @@ button_style_pages = {
 label_style_pages = {
     "width": 15,
     "height": 2,
-    "bg": "darkgray",
+    "bg": "black",
     "fg": "white",
     "font": ("Arial", 16),
 }
@@ -27,13 +27,13 @@ label_style_pages = {
 label_style_result = {
     "width": 40,
     "height": 2,
-    "bg": "lightgray",
+    "bg": "white",
     "fg": "black",
     "font": ("Arial", 14),
 }
 
 label_style_title = {
-    "width": 15,
+    "width": 600,
     "height": 2,
     "bg": "black",
     "fg": "white",
