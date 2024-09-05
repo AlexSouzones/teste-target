@@ -10,7 +10,7 @@ button_style = {
 }
 
 button_style_pages = {
-    "width": 12,
+    "width": 14,
     "height": 1,
     "bg": "gray",
     "fg": "white",
@@ -30,6 +30,14 @@ label_style_result = {
     "height": 3,
     "bg": "white",
     "fg": "black",
+    "font": ("Arial", 14),
+}
+
+label_style_legend = {
+    "width": 40,
+    "height": 3,
+    "bg": "slategray",
+    "fg": "white",
     "font": ("Arial", 14),
 }
 

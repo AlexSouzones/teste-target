@@ -1,8 +1,12 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
-import json
-import xml.etree.ElementTree as ET
 from utils import load_data
+from utils import (
+    label_style_info,
+    label_style_legend,
+    button_style_pages,
+    label_style_title,
+)
 
 
 class MonthlyIncomeScreen:
@@ -22,23 +26,62 @@ class MonthlyIncomeScreen:
         tk.Button(self.root, text="Voltar", command=self.create_main_screen).pack(
             anchor="w", pady=10, padx=10
         )
+        tk.Button(
+            self.root,
+            text="Escolher arquivo",
+            command=self.load_file,
+            **button_style_pages,
+        ).pack(pady=10)
 
-        tk.Button(self.root, text="Escolher arquivo", command=self.load_file).pack(
-            pady=10
+        frame = tk.Frame(self.root, bg="darkgray")
+        frame.pack(pady=10)
+
+        min_income_var = tk.StringVar(value="R$ 0,00")
+        max_income_var = tk.StringVar(value="R$ 0,00")
+        mid_income_var = tk.StringVar(value="R$ 0,00")
+        days_above_avg_var = tk.StringVar(value="0 dias")
+
+        tk.Label(frame, text="Faturamento Mínimo Mensal:", **label_style_legend).grid(
+            row=0, column=0, padx=10, pady=5, sticky="e"
+        )
+        tk.Label(frame, textvariable=min_income_var, **label_style_info).grid(
+            row=0, column=1, padx=10, pady=5, sticky="w"
         )
 
-        min_income_var = tk.StringVar()
-        max_income_var = tk.StringVar()
-        days_above_avg_var = tk.StringVar()
+        tk.Label(frame, text="Faturamento Máximo Mensal:", **label_style_legend).grid(
+            row=1, column=0, padx=10, pady=5, sticky="e"
+        )
+        tk.Label(frame, textvariable=max_income_var, **label_style_info).grid(
+            row=1, column=1, padx=10, pady=5, sticky="w"
+        )
 
-        tk.Label(self.root, text="Faturamento Mínimo Mensal:").pack(pady=5)
-        tk.Entry(self.root, textvariable=min_income_var).pack(pady=5)
+        tk.Label(frame, text="Faturamento Médio Mensal:", **label_style_legend).grid(
+            row=2, column=0, padx=10, pady=5, sticky="e"
+        )
+        tk.Label(frame, textvariable=mid_income_var, **label_style_info).grid(
+            row=2, column=1, padx=10, pady=5, sticky="w"
+        )
 
-        tk.Label(self.root, text="Faturamento Máximo Mensal:").pack(pady=5)
-        tk.Entry(self.root, textvariable=max_income_var).pack(pady=5)
+        tk.Label(
+            frame, text="Dias Faturando Acima da Média:", **label_style_legend
+        ).grid(row=3, column=0, padx=10, pady=5, sticky="e")
+        tk.Label(frame, textvariable=days_above_avg_var, **label_style_info).grid(
+            row=3, column=1, padx=10, pady=5, sticky="w"
+        )
 
-        tk.Label(self.root, text="Dias de Faturamento Acima da Média:").pack(pady=5)
-        tk.Entry(self.root, textvariable=days_above_avg_var).pack(pady=5)
+        self.info_title = tk.Label(
+            self.root,
+            text="""INFORMAÇÃO""",
+            **label_style_title,
+        )
+        self.info_title.pack(pady=10)
+
+        self.info_files = tk.Label(
+            self.root,
+            text="Os arquivos a serem enviados devem estar nos formatos JSON ou XML e seguir o padrão da atividade.",
+            **label_style_info,
+        )
+        self.info_files.pack(pady=5)
 
 
 if __name__ == "__main__":
