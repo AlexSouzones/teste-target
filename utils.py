@@ -1,5 +1,13 @@
 import json
 
+button_style = {
+    "width": 30,
+    "height": 4,
+    "bg": "gray",
+    "fg": "white",
+    "font": ("Arial", 16),
+}
+
 
 def calculate_percentage(value: int | float, total: int | float) -> int | float:
     if total == 0:
