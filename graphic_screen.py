@@ -1,8 +1,13 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
-from utils import calculate_percentage
+from utils import (
+    calculate_percentage,
+    label_style_legend,
+    input_style_frame,
+    processar_valor,
+)
 
 
 class GraphicScreen:
@@ -16,15 +21,19 @@ class GraphicScreen:
             anchor="w", pady=10, padx=10
         )
 
-        input_frame = tk.Frame(self.root)
+        input_frame = tk.Frame(self.root, bg="darkgray")
         input_frame.pack(pady=5)
 
-        tk.Label(input_frame, text="Nome do Estado:").grid(row=0, column=0, padx=5)
-        state_entry = tk.Entry(input_frame)
+        tk.Label(input_frame, text="Nome do Estado:", **label_style_legend).grid(
+            row=0, column=0, padx=5, pady=5, sticky="e"
+        )
+        state_entry = tk.Entry(input_frame, **input_style_frame)
         state_entry.grid(row=0, column=1, padx=5)
 
-        tk.Label(input_frame, text="Valor:").grid(row=1, column=0, padx=5)
-        value_entry = tk.Entry(input_frame)
+        tk.Label(input_frame, text="Valor:", **label_style_legend).grid(
+            row=1, column=0, padx=5, pady=5, sticky="e"
+        )
+        value_entry = tk.Entry(input_frame, **input_style_frame)
         value_entry.grid(row=1, column=1, padx=5)
 
         tk.Button(
@@ -34,27 +43,36 @@ class GraphicScreen:
         ).grid(row=2, columnspan=2, pady=10)
 
         self.tree = ttk.Treeview(
-            self.root, columns=("Estado", "Valor", "Porcentagem"), show="headings"
+            self.root,
+            columns=("Estado", "Valor", "Porcentagem"),
+            show="headings",
+            height=5,
         )
-        self.tree.heading("Estado", text="Estado")
-        self.tree.heading("Valor", text="Valor")
-        self.tree.heading("Porcentagem", text="Porcentagem")
+        self.tree.heading("Estado", text="Estado", anchor="center")
+        self.tree.column("Estado", width=160, anchor="center")
+        self.tree.heading("Valor", text="Valor", anchor="center")
+        self.tree.column("Valor", width=140, anchor="center")
+        self.tree.heading("Porcentagem", text="Porcentagem", anchor="center")
+        self.tree.column("Porcentagem", width=140, anchor="center")
         self.tree.pack(pady=5)
 
         global graph_frame
         graph_frame = tk.Frame(self.root)
         graph_frame.pack(pady=10)
 
-    def add_state(self, state_entry, value_entry):
-        state = state_entry.get()
-        value = float(value_entry.get())
-        self.states[state] = value
-        color = plt.cm.tab20(len(self.states) % 20)[:3]
-        self.colors[state] = color
-        self.update_treeview()
-        state_entry.delete(0, tk.END)
-        value_entry.delete(0, tk.END)
-        self.plot_graph()
+    def add_state(self, state_entry: tk.Entry, value_entry: tk.Entry):
+        state = state_entry.get().strip()
+        value = processar_valor(value_entry.get())
+        if value:
+            self.states[state] = value
+            color = plt.cm.tab20(len(self.states) % 20)[:3]
+            self.colors[state] = color
+            self.update_treeview()
+            state_entry.delete(0, tk.END)
+            value_entry.delete(0, tk.END)
+            self.plot_graph()
+        else:
+            messagebox.showwarning("Aviso", "Insira um número, por favor!")
 
     def update_treeview(self):
         for item in self.tree.get_children():

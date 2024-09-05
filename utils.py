@@ -61,6 +61,14 @@ label_style_info = {
     "wraplength": 420,
 }
 
+input_style_frame = {
+    "font": ("Arial", 14),
+    "bg": "white",
+    "fg": "black",
+    "width": 10,
+    "justify": "center",
+}
+
 
 def linkedin_link() -> None:
     url = "https://www.linkedin.com/in/alexandre-p-souza-0b9532211"
@@ -70,6 +78,16 @@ def linkedin_link() -> None:
 def github_link() -> None:
     url = "https://github.com/AlexSouzones"
     webbrowser.open(url)
+
+
+def processar_valor(entry: str) -> None | float:
+    valor_numerico = entry.replace(".", "").replace(",", ".").replace("R$", "")
+    try:
+        valor_float = float(valor_numerico)
+    except ValueError:
+        valor_float = None
+
+    return valor_float
 
 
 def calculate_percentage(value: int | float, total: int | float) -> int | float:

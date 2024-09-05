@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from reverse_screen import ReverseScreen
 from fibonacci_screen import FibonacciScreen
 from monthly_income_screen import MonthlyIncomeScreen
@@ -16,7 +17,9 @@ class App(
         self.root.resizable(False, False)
         self.create_main_screen()
         self.setup_ui()
-
+        self.style = ttk.Style()
+        self.style.configure("Treeview.Heading", font=("Helvetica", 14))
+        self.style.configure("Treeview", font=("Helvetica", 12))
     def setup_ui(self):
         self.root.configure(bg="lightblue")
 
