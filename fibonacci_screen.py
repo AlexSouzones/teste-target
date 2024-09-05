@@ -2,7 +2,6 @@ import tkinter as tk
 from utils import (
     is_fibonacci,
     button_style_pages,
-    label_style_pages,
     label_style_info,
     label_style_result,
     label_style_title,
@@ -33,10 +32,11 @@ class FibonacciScreen:
             anchor="w", pady=10, padx=10
         )
 
-        tk.Label(self.root, text="Digite um número:", **label_style_pages).pack(pady=10)
+        tk.Label(self.root, text="Digite um número:", **label_style_title).pack(pady=10)
         self.entry = tk.Entry(
             self.root,
             width=5,
+            justify="center",
             font=("Arial", 30),
         )
         self.entry.pack(pady=10)

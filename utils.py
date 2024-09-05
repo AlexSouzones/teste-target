@@ -10,7 +10,7 @@ button_style = {
 
 button_style_pages = {
     "width": 12,
-    "height": 2,
+    "height": 1,
     "bg": "gray",
     "fg": "white",
     "font": ("Arial", 14),
@@ -18,7 +18,7 @@ button_style_pages = {
 
 label_style_pages = {
     "width": 15,
-    "height": 2,
+    "height": 1,
     "bg": "black",
     "fg": "white",
     "font": ("Arial", 16),
@@ -26,23 +26,23 @@ label_style_pages = {
 
 label_style_result = {
     "width": 40,
-    "height": 2,
+    "height": 3,
     "bg": "white",
     "fg": "black",
     "font": ("Arial", 14),
 }
 
 label_style_title = {
-    "width": 600,
-    "height": 2,
-    "bg": "black",
+    "width": 20,
+    "height": 1,
+    "bg": "#FF7F50",
     "fg": "white",
     "font": ("Arial", 20),
 }
 
 label_style_info = {
     "font": ("Arial", 16),
-    "bg": "white",
+    "bg": "#98FB98",
     "fg": "black",
     "padx": 10,
     "pady": 10,
