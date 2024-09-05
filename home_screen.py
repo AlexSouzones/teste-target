@@ -1,23 +1,9 @@
 import tkinter as tk
 from utils import button_style, linkedin_link, github_link
-from tkinter import Menu, Text, INSERT
+from tkinter import Menu, PhotoImage
 
 
 class HomeScreen:
-
-    def contatos(self):
-        self.window = tk.Tk()
-        self.window.title("Onde me Encontrar :')")
-        self.window.configure(bg="lightblue")
-        self.window.resizable(False, False)
-
-        infos = "\nEmail: alexandresouzones@gmail.com\n\nGithub: https://github.com/AlexSouzones\n\nLinkedin: https://www.linkedin.com/in/alexandre-p-souza-0b9532211"
-        lbinfo = Text(self.window, width=40, height=7, bg="#FFFACD")
-        lbinfo.insert(INSERT, infos)
-        lbinfo.config(state="disabled")
-        lbinfo.grid(row=0, column=0, padx=5, pady=5)
-
-        self.window.mainloop()
 
     def create_main_screen(self):
 
@@ -28,12 +14,17 @@ class HomeScreen:
 
         self.barrademenu = Menu(self.root)
         self.root.config(menu=self.barrademenu)
+        self.icon_github = PhotoImage(file="icons/github.png").subsample(5, 5)
+        self.icon_linkedin = PhotoImage(file="icons/linkedin.png").subsample(5, 5)
+        contatos = Menu(self.barrademenu, tearoff=0, bg="#F5F5DC")
 
-        contatos = Menu(self.barrademenu, tearoff=0)
-        self.barrademenu.add_cascade(label="contatos", menu=contatos)
-        contatos.add_command(label="Contatos", command=self.contatos)
-        contatos.add_command(label="Linkedin", command=linkedin_link)
-        contatos.add_command(label="Github", command=github_link)
+        self.barrademenu.add_cascade(label="CONTATOS", menu=contatos)
+        contatos.add_command(
+            label="Linkedin", image=self.icon_linkedin, command=linkedin_link
+        )
+        contatos.add_command(
+            label="Github", image=self.icon_github, command=github_link
+        )
 
         tk.Button(
             main_frame,
