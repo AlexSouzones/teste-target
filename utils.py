@@ -1,11 +1,12 @@
 import json
+import webbrowser
 
 button_style = {
-    "width": 30,
-    "height": 4,
+    "width": 25,
+    "height": 2,
     "bg": "gray",
     "fg": "white",
-    "font": ("Arial", 16),
+    "font": ("Arial", 20),
 }
 
 button_style_pages = {
@@ -50,6 +51,16 @@ label_style_info = {
     "justify": "left",
     "wraplength": 420,
 }
+
+
+def linkedin_link():
+    url = "https://www.linkedin.com/in/alexandre-p-souza-0b9532211"
+    webbrowser.open(url)
+    
+
+def github_link():
+    url = "https://github.com/AlexSouzones"
+    webbrowser.open(url)
 
 
 def calculate_percentage(value: int | float, total: int | float) -> int | float:
