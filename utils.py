@@ -61,12 +61,12 @@ label_style_info = {
 }
 
 
-def linkedin_link():
+def linkedin_link() -> None:
     url = "https://www.linkedin.com/in/alexandre-p-souza-0b9532211"
     webbrowser.open(url)
-    
 
-def github_link():
+
+def github_link() -> None:
     url = "https://github.com/AlexSouzones"
     webbrowser.open(url)
 
@@ -90,13 +90,44 @@ def is_fibonacci(number: int) -> bool:
     return False
 
 
-def load_data(file_path: str) -> None:
-    if file_path.endswith(".json"):
+def load_data(file_path: str) -> None | list[dict[str, int, float]]:
+    if file_path.lower().endswith(".json"):
         with open(file_path, "r") as file:
             data = json.load(file)
-            print(data)
-    elif file_path.endswith(".xml"):
+            info = [dicionario for dicionario in data if dicionario["valor"] > 0]
+            if info:
+                return info
+            return None
+    elif file_path.lower().endswith(".xml"):
         ...
+
+
+def calculate_mid_value(info_values: list[dict[str, int, float]]) -> int | float:
+    values = [info["valor"] for info in info_values]
+    mid = sum(values) / len(values)
+    return mid
+
+
+def state_values(info_values: list[dict[str, int, float]]) -> dict[str, int, float]:
+    max_value = info_values[0]
+    min_value = info_values[0]
+    mid_value = calculate_mid_value(info_values)
+    best_days = 0
+    for info in info_values:
+        if info["valor"] < min_value["valor"]:
+            min_value = info
+        if info["valor"] > max_value["valor"]:
+            max_value = info
+        if info["valor"] > max_value["valor"]:
+            max_value = info
+        if info["valor"] > mid_value:
+            best_days += 1
+    return {
+        "min value": min_value,
+        "max value": max_value,
+        "mid value": mid_value,
+        "best days": best_days,
+    }
 
 
 if __name__ == "__main__":
