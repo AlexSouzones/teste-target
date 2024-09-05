@@ -3,10 +3,12 @@ from reverse_screen import ReverseScreen
 from fibonacci_screen import FibonacciScreen
 from monthly_income_screen import MonthlyIncomeScreen
 from graphic_screen import GraphicScreen
-from utils import button_style
+from home_screen import HomeScreen
 
 
-class App(ReverseScreen, FibonacciScreen, MonthlyIncomeScreen, GraphicScreen):
+class App(
+    ReverseScreen, FibonacciScreen, MonthlyIncomeScreen, GraphicScreen, HomeScreen
+):
     def __init__(self, root):
         self.root = root
         self.root.title("Teste Target Sistemas")
@@ -14,37 +16,9 @@ class App(ReverseScreen, FibonacciScreen, MonthlyIncomeScreen, GraphicScreen):
         self.root.resizable(False, False)
         self.create_main_screen()
         self.setup_ui()
-        
+
     def setup_ui(self):
-        self.root.configure(bg='lightblue')
-        
-    def create_main_screen(self):
-        self.clear_screen()
-
-        main_frame = tk.Frame(self.root)
-        main_frame.pack(fill="both", expand=True)
-
-        tk.Button(
-            main_frame,
-            text="Fibonacci",
-            command=self.show_fibonacci_screen,
-            **button_style
-        ).pack(pady=10)
-        tk.Button(
-            main_frame,
-            text="Renda Mensal Empresarial",
-            command=self.show_renda_mensal_screen,
-            **button_style
-        ).pack(pady=10)
-        tk.Button(
-            main_frame,
-            text="Gráfico Faturamento Empresarial",
-            command=self.show_grafico_screen,
-            **button_style
-        ).pack(pady=10)
-        tk.Button(
-            main_frame, text="Reverse", command=self.show_reverse_screen, **button_style
-        ).pack(pady=10)
+        self.root.configure(bg="lightblue")
 
 
 if __name__ == "__main__":
