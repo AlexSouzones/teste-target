@@ -12,7 +12,7 @@ class App(ReverseScreen, FibonacciScreen, MonthlyIncomeScreen, GraphicScreen):
         self.root.title("Teste Target Sistemas")
         self.root.geometry("800x600")
         self.create_main_screen()
-
+    
     def create_main_screen(self):
         self.clear_screen()
 

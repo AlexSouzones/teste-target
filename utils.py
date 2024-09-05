@@ -8,6 +8,49 @@ button_style = {
     "font": ("Arial", 16),
 }
 
+button_style_pages = {
+    "width": 12,
+    "height": 2,
+    "bg": "gray",
+    "fg": "white",
+    "font": ("Arial", 14),
+}
+
+label_style_pages = {
+    "width": 15,
+    "height": 2,
+    "bg": "darkgray",
+    "fg": "white",
+    "font": ("Arial", 16),
+}
+
+label_style_result = {
+    "width": 40,
+    "height": 2,
+    "bg": "lightgray",
+    "fg": "black",
+    "font": ("Arial", 14),
+}
+
+label_style_title = {
+    "width": 15,
+    "height": 2,
+    "bg": "black",
+    "fg": "white",
+    "font": ("Arial", 20),
+}
+
+label_style_info = {
+    "font": ("Arial", 16),
+    "bg": "white",
+    "fg": "black",
+    "padx": 10,
+    "pady": 10,
+    "anchor": "w",
+    "justify": "left",
+    "wraplength": 420,
+}
+
 
 def calculate_percentage(value: int | float, total: int | float) -> int | float:
     if total == 0:
